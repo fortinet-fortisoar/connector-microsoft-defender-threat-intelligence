@@ -1,0 +1,899 @@
+{
+  "type": "workflow_collections",
+  "data": [
+    {
+      "uuid": "1b8bcd1a-e006-46c3-9792-c3159ee2e3c0",
+      "@type": "WorkflowCollection",
+      "name": "Sample - Microsoft Defender Threat Intelligence - 1.0.0",
+      "description": "",
+      "visible": true,
+      "image": null,
+      "recordTags": [
+        "Microsoft",
+        "microsoft-defender-threat-intelligence"
+      ],
+      "workflows": [
+        {
+          "@type": "Workflow",
+          "uuid": "1b9f7bfe-f847-41d4-ae79-1d3bc2ecf778",
+          "collection": "/api/3/workflow_collections/1b8bcd1a-e006-46c3-9792-c3159ee2e3c0",
+          "triggerLimit": null,
+          "description": "Retrieves security reputation and threat intelligence data for a specified host to assess its risk level and potential malicious activity.",
+          "name": "Get Host Reputation",
+          "tag": "#Microsoft Defender Threat Intelligence",
+          "recordTags": [
+            "Microsoft",
+            "microsoft-defender-threat-intelligence"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/62bc2b8b-b7fe-437c-8ad2-11a8b5cdb11f",
+          "steps": [
+            {
+              "uuid": "62bc2b8b-b7fe-437c-8ad2-11a8b5cdb11f",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "b0680a44-9434-4b18-8552-6ade6adc316c",
+                "title": "Microsoft Defender Threat Intelligence: Get Host Reputation",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "6417c688-d43a-4e00-bcc6-061e69e7f732",
+              "@type": "WorkflowStep",
+              "name": "Get Host Reputation",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Microsoft Defender Threat Intelligence",
+                "config": "''",
+                "params": [],
+                "version": "1.0.0",
+                "connector": "microsoft-defender-threat-intelligence",
+                "operation": "get_host_reputation",
+                "operationTitle": "Get Host Reputation",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "151d4f06-ba47-4f04-8b12-a66a6a99f752",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Host Reputation",
+              "sourceStep": "/api/3/workflow_steps/62bc2b8b-b7fe-437c-8ad2-11a8b5cdb11f",
+              "targetStep": "/api/3/workflow_steps/6417c688-d43a-4e00-bcc6-061e69e7f732"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "72a8610f-fa63-4f64-afad-ad66bb77230e",
+          "collection": "/api/3/workflow_collections/1b8bcd1a-e006-46c3-9792-c3159ee2e3c0",
+          "triggerLimit": null,
+          "description": "Retrieves comprehensive host information including system details, network configurations, and associated threat intelligence data.",
+          "name": "Get Host Details",
+          "tag": "#Microsoft Defender Threat Intelligence",
+          "recordTags": [
+            "Microsoft",
+            "microsoft-defender-threat-intelligence"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/cc04b614-38bc-4fa9-8306-e9035f3267b8",
+          "steps": [
+            {
+              "uuid": "cc04b614-38bc-4fa9-8306-e9035f3267b8",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "e51b9dad-20f6-4cc4-b46a-c5dfcf984889",
+                "title": "Microsoft Defender Threat Intelligence: Get Host Details",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "019d9ba3-779e-4848-9ef9-6258e8e55132",
+              "@type": "WorkflowStep",
+              "name": "Get Host Details",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Microsoft Defender Threat Intelligence",
+                "config": "''",
+                "params": [],
+                "version": "1.0.0",
+                "connector": "microsoft-defender-threat-intelligence",
+                "operation": "get_host_details",
+                "operationTitle": "Get Host Details",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "19901423-2bb0-4c8e-8bd1-9ff0b2dd3041",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Host Details",
+              "sourceStep": "/api/3/workflow_steps/cc04b614-38bc-4fa9-8306-e9035f3267b8",
+              "targetStep": "/api/3/workflow_steps/019d9ba3-779e-4848-9ef9-6258e8e55132"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "337b8790-0f3a-42f4-b48d-8ea89b9995d9",
+          "collection": "/api/3/workflow_collections/1b8bcd1a-e006-46c3-9792-c3159ee2e3c0",
+          "triggerLimit": null,
+          "description": "Retrieves domain registration and ownership information through Whois lookup, either by host identifier or specific Whois record ID.",
+          "name": "Get Whois Record",
+          "tag": "#Microsoft Defender Threat Intelligence",
+          "recordTags": [
+            "Microsoft",
+            "microsoft-defender-threat-intelligence"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/14985ce6-e204-40f6-9066-5e4cd44309ba",
+          "steps": [
+            {
+              "uuid": "14985ce6-e204-40f6-9066-5e4cd44309ba",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "df6e800c-a733-4e00-bee9-779a81bbd60c",
+                "title": "Microsoft Defender Threat Intelligence: Get Whois Record",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "8c9a1f3b-8a88-4755-9467-5027666e8998",
+              "@type": "WorkflowStep",
+              "name": "Get Whois Record",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Microsoft Defender Threat Intelligence",
+                "config": "''",
+                "params": [],
+                "version": "1.0.0",
+                "connector": "microsoft-defender-threat-intelligence",
+                "operation": "get_whoisrecord",
+                "operationTitle": "Get Whois Record",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "acee4f57-8fcc-4929-9bcc-f981db1dd6a0",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Whois Record",
+              "sourceStep": "/api/3/workflow_steps/14985ce6-e204-40f6-9066-5e4cd44309ba",
+              "targetStep": "/api/3/workflow_steps/8c9a1f3b-8a88-4755-9467-5027666e8998"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "50b28777-183f-4523-9570-b0e72cf89d2b",
+          "collection": "/api/3/workflow_collections/1b8bcd1a-e006-46c3-9792-c3159ee2e3c0",
+          "triggerLimit": null,
+          "description": "Retrieves an inventory of software components, services, and applications detected on the specified host system.",
+          "name": "List Components",
+          "tag": "#Microsoft Defender Threat Intelligence",
+          "recordTags": [
+            "Microsoft",
+            "microsoft-defender-threat-intelligence"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/de0e8e15-3be9-4bb5-8aa2-23efcb4a6290",
+          "steps": [
+            {
+              "uuid": "de0e8e15-3be9-4bb5-8aa2-23efcb4a6290",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "35391a09-f4a7-4725-b1ce-039db0602bdc",
+                "title": "Microsoft Defender Threat Intelligence: List Components",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "de4a91b2-0f28-4673-b272-3793a900b8bf",
+              "@type": "WorkflowStep",
+              "name": "List Components",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Microsoft Defender Threat Intelligence",
+                "config": "''",
+                "params": [],
+                "version": "1.0.0",
+                "connector": "microsoft-defender-threat-intelligence",
+                "operation": "list_components",
+                "operationTitle": "List Components",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "e1bcf36d-2cc2-4683-8ea2-e5e9bd2a79c4",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> List Components",
+              "sourceStep": "/api/3/workflow_steps/de0e8e15-3be9-4bb5-8aa2-23efcb4a6290",
+              "targetStep": "/api/3/workflow_steps/de4a91b2-0f28-4673-b272-3793a900b8bf"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "2496f8f0-eb5f-46a2-833e-0497fe79223a",
+          "collection": "/api/3/workflow_collections/1b8bcd1a-e006-46c3-9792-c3159ee2e3c0",
+          "triggerLimit": null,
+          "description": "Retrieves historical DNS resolution records showing how domain names have mapped to IP addresses over time.",
+          "name": "List Passive DNS",
+          "tag": "#Microsoft Defender Threat Intelligence",
+          "recordTags": [
+            "Microsoft",
+            "microsoft-defender-threat-intelligence"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/86968a51-7087-4ec5-8d20-6c5814c12ef5",
+          "steps": [
+            {
+              "uuid": "86968a51-7087-4ec5-8d20-6c5814c12ef5",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "a826a416-7d5f-446b-aa3e-f23484d2c8a6",
+                "title": "Microsoft Defender Threat Intelligence: List Passive DNS",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "36f709ca-3ea2-4d69-817c-6b0abcb79914",
+              "@type": "WorkflowStep",
+              "name": "List Passive DNS",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Microsoft Defender Threat Intelligence",
+                "config": "''",
+                "params": [],
+                "version": "1.0.0",
+                "connector": "microsoft-defender-threat-intelligence",
+                "operation": "list_passiveDns",
+                "operationTitle": "List Passive DNS",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "9a0c6fc5-1185-4a56-bb16-d624ee719852",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> List Passive DNS",
+              "sourceStep": "/api/3/workflow_steps/86968a51-7087-4ec5-8d20-6c5814c12ef5",
+              "targetStep": "/api/3/workflow_steps/36f709ca-3ea2-4d69-817c-6b0abcb79914"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "b377c4cd-4cc1-4878-bb0c-6ca225373ab3",
+          "collection": "/api/3/workflow_collections/1b8bcd1a-e006-46c3-9792-c3159ee2e3c0",
+          "triggerLimit": null,
+          "description": "Retrieves historical reverse DNS records showing how IP addresses have mapped to domain names over time.",
+          "name": "List Passive DNS Reverse",
+          "tag": "#Microsoft Defender Threat Intelligence",
+          "recordTags": [
+            "Microsoft",
+            "microsoft-defender-threat-intelligence"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/d4ba6158-0531-499b-a361-9d546de7faf5",
+          "steps": [
+            {
+              "uuid": "d4ba6158-0531-499b-a361-9d546de7faf5",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "696d35d9-9dba-4c1d-a063-acd812596721",
+                "title": "Microsoft Defender Threat Intelligence: List Passive DNS Reverse",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "4a4a957e-395a-42ba-8aea-cb441b4ccef7",
+              "@type": "WorkflowStep",
+              "name": "List Passive DNS Reverse",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Microsoft Defender Threat Intelligence",
+                "config": "''",
+                "params": [],
+                "version": "1.0.0",
+                "connector": "microsoft-defender-threat-intelligence",
+                "operation": "list_passiveDns_reverse",
+                "operationTitle": "List Passive DNS Reverse",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "78b0a77d-074f-40c6-ae8b-5c7a8d9228e5",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> List Passive DNS Reverse",
+              "sourceStep": "/api/3/workflow_steps/d4ba6158-0531-499b-a361-9d546de7faf5",
+              "targetStep": "/api/3/workflow_steps/4a4a957e-395a-42ba-8aea-cb441b4ccef7"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "67b643f0-8c26-4b0d-8ac5-df3f23006dd7",
+          "collection": "/api/3/workflow_collections/1b8bcd1a-e006-46c3-9792-c3159ee2e3c0",
+          "triggerLimit": null,
+          "description": "Retrieves a comprehensive list of open ports, associated services, and network protocols active on the specified host.",
+          "name": "List Host Ports",
+          "tag": "#Microsoft Defender Threat Intelligence",
+          "recordTags": [
+            "Microsoft",
+            "microsoft-defender-threat-intelligence"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/c4f6e2e6-744c-4e49-8fb2-bbd4aaf82c14",
+          "steps": [
+            {
+              "uuid": "c4f6e2e6-744c-4e49-8fb2-bbd4aaf82c14",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "f1be36c3-ff65-43b8-b2b7-14094bf47666",
+                "title": "Microsoft Defender Threat Intelligence: List Host Ports",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "f4b325b1-b3ac-4cc1-a477-077c3f754491",
+              "@type": "WorkflowStep",
+              "name": "List Host Ports",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Microsoft Defender Threat Intelligence",
+                "config": "''",
+                "params": [],
+                "version": "1.0.0",
+                "connector": "microsoft-defender-threat-intelligence",
+                "operation": "list_hostPorts",
+                "operationTitle": "List Host Ports",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "0576bae5-f3cd-47cd-a128-3e13b6b80808",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> List Host Ports",
+              "sourceStep": "/api/3/workflow_steps/c4f6e2e6-744c-4e49-8fb2-bbd4aaf82c14",
+              "targetStep": "/api/3/workflow_steps/f4b325b1-b3ac-4cc1-a477-077c3f754491"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "e5445a16-5b57-48b3-a97c-d0d05a1a1f87",
+          "collection": "/api/3/workflow_collections/1b8bcd1a-e006-46c3-9792-c3159ee2e3c0",
+          "triggerLimit": null,
+          "description": "Retrieves all SSL/TLS certificates associated with the host, including validity dates, issuers, and certificate details.",
+          "name": "List Host SSL Certificates",
+          "tag": "#Microsoft Defender Threat Intelligence",
+          "recordTags": [
+            "Microsoft",
+            "microsoft-defender-threat-intelligence"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/62b168b3-9dae-4e91-b93c-d3b6888680bc",
+          "steps": [
+            {
+              "uuid": "62b168b3-9dae-4e91-b93c-d3b6888680bc",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "8d1093e8-1e05-43a5-b3a7-7e2d9c904c95",
+                "title": "Microsoft Defender Threat Intelligence: List Host SSL Certificates",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "afb9e9da-f5f7-414d-984b-ab3c2be4a807",
+              "@type": "WorkflowStep",
+              "name": "List Host SSL Certificates",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Microsoft Defender Threat Intelligence",
+                "config": "''",
+                "params": [],
+                "version": "1.0.0",
+                "connector": "microsoft-defender-threat-intelligence",
+                "operation": "list_host_ssl_certificates",
+                "operationTitle": "List Host SSL Certificates",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "d6386457-d66e-496f-a14e-d0bb7d20e8a5",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> List Host SSL Certificates",
+              "sourceStep": "/api/3/workflow_steps/62b168b3-9dae-4e91-b93c-d3b6888680bc",
+              "targetStep": "/api/3/workflow_steps/afb9e9da-f5f7-414d-984b-ab3c2be4a807"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "6d95a041-b625-4d4b-affd-08349d78b187",
+          "collection": "/api/3/workflow_collections/1b8bcd1a-e006-46c3-9792-c3159ee2e3c0",
+          "triggerLimit": null,
+          "description": "Retrieves detailed information about a specific SSL/TLS certificate, including chain of trust, cryptographic details, and validation status.",
+          "name": "Get Host SSL Certificate",
+          "tag": "#Microsoft Defender Threat Intelligence",
+          "recordTags": [
+            "Microsoft",
+            "microsoft-defender-threat-intelligence"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/153493c0-d611-4cec-a09d-adac5c2ec063",
+          "steps": [
+            {
+              "uuid": "153493c0-d611-4cec-a09d-adac5c2ec063",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "872edad6-7745-4a54-81da-01336bade5bb",
+                "title": "Microsoft Defender Threat Intelligence: Get Host SSL Certificate",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "fa9dcdc8-ad91-4938-a6ae-c99619747443",
+              "@type": "WorkflowStep",
+              "name": "Get Host SSL Certificate",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Microsoft Defender Threat Intelligence",
+                "config": "''",
+                "params": [],
+                "version": "1.0.0",
+                "connector": "microsoft-defender-threat-intelligence",
+                "operation": "get_host_ssl_certificate",
+                "operationTitle": "Get Host SSL Certificate",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "79ee3e71-d8a4-47c8-b5e4-245341e5ce0d",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Host SSL Certificate",
+              "sourceStep": "/api/3/workflow_steps/153493c0-d611-4cec-a09d-adac5c2ec063",
+              "targetStep": "/api/3/workflow_steps/fa9dcdc8-ad91-4938-a6ae-c99619747443"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "bfd16d49-3567-4273-a670-4da20ad7a2a3",
+          "collection": "/api/3/workflow_collections/1b8bcd1a-e006-46c3-9792-c3159ee2e3c0",
+          "triggerLimit": null,
+          "description": "Retrieves detailed information about a specific software component, including version, configuration, and security status.",
+          "name": "Get Host Component",
+          "tag": "#Microsoft Defender Threat Intelligence",
+          "recordTags": [
+            "Microsoft",
+            "microsoft-defender-threat-intelligence"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/822d5f11-2bf2-4a4f-a047-0760fe4f1de6",
+          "steps": [
+            {
+              "uuid": "822d5f11-2bf2-4a4f-a047-0760fe4f1de6",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "d3ac6f9a-b426-4549-9ec0-6f8a488502c2",
+                "title": "Microsoft Defender Threat Intelligence: Get Host Component",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "cf866fa5-9cbe-4cde-92f8-e57ed7d35afb",
+              "@type": "WorkflowStep",
+              "name": "Get Host Component",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Microsoft Defender Threat Intelligence",
+                "config": "''",
+                "params": [],
+                "version": "1.0.0",
+                "connector": "microsoft-defender-threat-intelligence",
+                "operation": "get_host_component",
+                "operationTitle": "Get Host Component",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "8d707f34-a76c-4ba5-b3fe-dd2e71fb7114",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Host Component",
+              "sourceStep": "/api/3/workflow_steps/822d5f11-2bf2-4a4f-a047-0760fe4f1de6",
+              "targetStep": "/api/3/workflow_steps/cf866fa5-9cbe-4cde-92f8-e57ed7d35afb"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "ee0ed489-7878-4432-8821-184c5ec9fa14",
+          "collection": "/api/3/workflow_collections/1b8bcd1a-e006-46c3-9792-c3159ee2e3c0",
+          "triggerLimit": null,
+          "description": "Retrieves a comprehensive list of threat indicators, including IOCs, behavioral patterns, and security alerts from the specified intelligence profile.",
+          "name": "List Indicators",
+          "tag": "#Microsoft Defender Threat Intelligence",
+          "recordTags": [
+            "Microsoft",
+            "microsoft-defender-threat-intelligence"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/49d88ecc-dcc7-44a5-be30-8af08ed0201e",
+          "steps": [
+            {
+              "uuid": "49d88ecc-dcc7-44a5-be30-8af08ed0201e",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "f096f6ad-2e8b-4d8a-9d95-fae58ef3909e",
+                "title": "Microsoft Defender Threat Intelligence: List Indicators",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "76e68dd3-400a-4e59-8f71-06acc2336607",
+              "@type": "WorkflowStep",
+              "name": "List Indicators",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Microsoft Defender Threat Intelligence",
+                "config": "''",
+                "params": [],
+                "version": "1.0.0",
+                "connector": "microsoft-defender-threat-intelligence",
+                "operation": "list_indicators",
+                "operationTitle": "List Indicators",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "bc570e8e-713b-4b46-b529-e17977aea56b",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> List Indicators",
+              "sourceStep": "/api/3/workflow_steps/49d88ecc-dcc7-44a5-be30-8af08ed0201e",
+              "targetStep": "/api/3/workflow_steps/76e68dd3-400a-4e59-8f71-06acc2336607"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
