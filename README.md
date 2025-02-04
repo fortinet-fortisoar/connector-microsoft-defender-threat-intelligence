@@ -20,6 +20,8 @@ Certified: No
 
 Also, before setting up the **Microsoft Defender Threat Intelligence Connector**, ensure the following requirements are met:
 
+## Minimum Permissions Required
+
 1. **Azure Application Registration (Required for Authentication)**
    - Register an application in Microsoft Entra Admin Center [(Guide)](https://learn.microsoft.com/en-us/graph/auth-register-app-v2).
    - Obtain the following values from the Azure portal:
@@ -35,9 +37,6 @@ Also, before setting up the **Microsoft Defender Threat Intelligence Connector**
      - **Delegated Permissions**: Required if authenticating on behalf of a user.
    - Admin consent may be required depending on your organization’s policies.
    - Refer to [this guide](https://learn.microsoft.com/en-us/graph/auth-v2-user?tabs=http) for more details on permissions.
-
-## Minimum Permissions Required
-- N/A
 
 ## Configuring the connector
 For the procedure to configure a connector, click [here](https://docs.fortinet.com/document/fortisoar/0.0.0/configuring-a-connector/1/configuring-a-connector)
