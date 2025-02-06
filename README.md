@@ -175,3 +175,96 @@ The `Sample - microsoft-defender-threat-intelligence - 1.0.0` playbook collectio
 - List Indicators
 
 **Note**: If you are planning to use any of the sample playbooks in your environment, ensure that you clone those playbooks and move them to a different collection, since the sample playbook collection gets deleted during connector upgrade and delete.
+# Getting Access Tokens
+
+You can get authentication tokens to access the Graph APIs using two methods:
+
+1. **On behalf of the User – Delegate Permission.** For more information, see [Microsoft Graph Auth V2 User](https://docs.microsoft.com/en-us/graph/auth-v2-user).
+2. **Without a User – Application Permission.** For more information, see [Microsoft Graph Auth V2 Service](https://docs.microsoft.com/en-us/graph/auth-v2-service).
+
+## Getting Access Tokens using the On Behalf of the User – Delegate Permission Method
+
+1. Ensure that the required permissions are granted for the registration of the application. 
+   - Navigate to **API Permissions > Add permission > Microsoft Graph > Delegated Permissions**.
+   - Refer to the **Minimum Permissions Required** table for the correct API Permission.
+2. Set the Redirect URL to any web application that will receive responses from Azure AD. If unsure, use `https://localhost/myapp`.
+3. Copy the following URL and replace `TENANT_ID`, `CLIENT_ID`, and `REDIRECT_URI` with your actual values:
+   ```plaintext
+   https://login.microsoftonline.com/TENANT_ID/oauth2/v2.0/authorize?response_type=code&scope=offline_access https://graph.microsoft.com/.default&client_id=CLIENT_ID&redirect_uri=REDIRECT_URI
+   ```
+4. Enter the modified URL in a browser, grant permissions for Azure Service Management, and you will be redirected to:
+   ```plaintext
+   REDIRECT_URI?code=AUTH_CODE&session_state=SESSION_STATE
+   ```
+5. Copy the `AUTH_CODE` (without the `code=` prefix) and paste it in your instance configuration under the **Authorization Code** parameter.
+6. Enter the required details:
+   - **Client ID**: `CLIENT_ID`
+   - **Client Secret**: `CLIENT_SECRET`
+   - **Tenant ID**: `TENANT_ID`
+   - **Redirect URL**: `https://localhost/myapp` (default)
+
+## Getting Access Tokens using the Without a User – Application Permission Method
+
+1. Ensure that the required permissions are granted for the registered application.
+2. Example API Permissions for Microsoft Graph User:
+   - `Directory.Read.All`
+   - `Directory.ReadWrite.All`
+   - `GroupMember.Read.All`
+   - `Group.Read.All`
+   - `Group.ReadWrite.All`
+   - `IdentityRiskyUser.Read.All`
+   - `Mail.ReadBasic.All`
+   - `Mail.Read`
+   - `Mail.ReadWrite`
+   - `SecurityEvents.Read.All`
+   - `SecurityEvents.ReadWrite.All`
+   - `Policy.Read.All`
+   - `Policy.ReadWrite.ConditionalAccess` (Application type)
+3. Enter the required details:
+   - **Client ID**: `CLIENT_ID`
+   - **Client Secret**: `CLIENT_SECRET`
+   - **Tenant ID**: `TENANT_ID`
+
+## Getting Access Tokens using the Certificate-Based Authentication Method
+
+1. Register an application with the Microsoft identity platform. For details, refer to [Register an Application](https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-register-app#register-an-application).
+2. Upload a CA certificate to the Azure portal. For instructions, see [Uploading a CA Certificate](https://learn.microsoft.com/en-us/entra/identity-platform/certificate-credentials).
+3. Note the **thumbprint, start date, and expiration values** after uploading the certificate.
+4. Enter the **certificate thumbprint** and upload the corresponding **private key** in the Configuration Parameters.
+
+## Minimum Permissions Table
+
+To call the Microsoft Graph API, specific permissions are required as listed below.
+
+| **Action Name**                  | **Permission Type** | **Permissions** |
+|----------------------------------|--------------------|----------------|
+| Get Risky Users List            | Delegated         | IdentityRiskyUser.Read.All |
+|                                  | Application       | IdentityRiskyUser.Read.All |
+| Get Risky User Details          | Delegated         | IdentityRiskyUser.Read.All |
+|                                  | Application       | IdentityRiskyUser.Read.All |
+| Get All Security Alerts         | Delegated         | SecurityEvents.Read.All, SecurityEvents.ReadWrite.All |
+|                                  | Application       | SecurityEvents.Read.All, SecurityEvents.ReadWrite.All |
+| Get Security Alert              | Delegated         | SecurityEvents.Read.All, SecurityEvents.ReadWrite.All |
+|                                  | Application       | SecurityEvents.Read.All, SecurityEvents.ReadWrite.All |
+| Update Security Alert           | Delegated         | SecurityEvents.ReadWrite.All |
+|                                  | Application       | SecurityEvents.ReadWrite.All |
+| Get Groups                      | Delegated         | GroupMember.Read.All, Group.Read.All, Directory.Read.All, Group.ReadWrite.All, Directory.ReadWrite.All |
+|                                  | Application       | GroupMember.Read.All, Group.Read.All, Directory.Read.All, Group.ReadWrite.All, Directory.ReadWrite.All |
+| Get Users Within A Group        | Delegated         | GroupMember.Read.All, Group.Read.All, Directory.Read.All, Group.ReadWrite.All, Directory.ReadWrite.All |
+|                                  | Application       | GroupMember.Read.All, Group.Read.All, Directory.Read.All, Group.ReadWrite.All, Directory.ReadWrite.All |
+| Search Messages in Users Mailbox | Delegated         | Mail.ReadWrite |
+|                                  | Application       | Mail.ReadWrite |
+| Delete Message                  | Delegated         | Mail.ReadWrite |
+|                                  | Application       | Mail.ReadWrite |
+| Delete Messages Bulk            | Delegated         | Mail.ReadWrite |
+|                                  | Application       | Mail.ReadWrite |
+| Revoke User Session             | Delegated         | User.ReadWrite.All, Directory.ReadWrite.All |
+|                                  | Application       | User.ReadWrite.All, Directory.ReadWrite.All |
+| Get All Named Locations         | Delegated         | Policy.Read.All |
+|                                  | Application       | Policy.Read.All |
+| Block IP Ranges                 | Delegated         | Policy.Read.All, Policy.ReadWrite.ConditionalAccess |
+|                                  | Application       | Policy.Read.All, Policy.ReadWrite.ConditionalAccess |
+| Unblock IP Ranges               | Delegated         | Policy.Read.All, Policy.ReadWrite.ConditionalAccess |
+|                                  | Application       | Policy.Read.All, Policy.ReadWrite.ConditionalAccess |
+| Create IP Named Location        | Delegated         | Policy.Read.All, Policy.ReadWrite.ConditionalAccess |
+|                                  | Application       | Policy.Read.All, Policy.ReadWrite.ConditionalAccess |
