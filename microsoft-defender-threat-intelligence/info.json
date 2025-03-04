@@ -1,0 +1,802 @@
+{
+    "name": "microsoft-defender-threat-intelligence",
+    "version": "1.0.0",
+    "label": "Microsoft Defender Threat Intelligence",
+    "description": "The Microsoft Defender Threat Intelligence FortiSOAR Connector enables automated threat intelligence gathering, enrichment, and response within FortiSOAR",
+    "publisher": "SpryIQ.co",
+    "icon_small_name": "small.png",
+    "icon_large_name": "large.png",
+    "id": 100,
+    "configuration": {
+        "fields": [
+            {
+                "title": "Get Access Token",
+                "type": "select",
+                "name": "auth_type",
+                "required": true,
+                "visible": true,
+                "editable": true,
+                "value": "Without a User - Application Permission",
+                "tooltip": "Select the authentication method for accessing security graph APIs.",
+                "description": "Select the method to obtain authentication tokens for accessing the security graph APIs. Options: Delegate Permission, Application Permission, or Certificate-Based Authentication.",
+                "options": [
+                    "Without a User - Application Permission",
+                    "On behalf of User - Delegate Permission"
+                ],
+                "onchange": {
+                    "Without a User - Application Permission": [
+                        {
+                            "title": "Server URL",
+                            "required": true,
+                            "editable": true,
+                            "visible": true,
+                            "type": "text",
+                            "name": "resource",
+                            "value": "https://graph.microsoft.com",
+                            "description": "Specify the service-based URI to connect and perform automated operations.",
+                            "tooltip": "Enter the service URL for API communication."
+                        },
+                        {
+                            "title": "Tenant ID",
+                            "description": "Specify the ID of the tenant assigned to you by the Azure application registration portal.",
+                            "tooltip": "Enter the Azure tenant ID.",
+                            "required": true,
+                            "editable": true,
+                            "visible": true,
+                            "type": "text",
+                            "name": "tenant"
+                        },
+                        {
+                            "title": "Client ID",
+                            "description": "Specify the Unique Application ID from Azure Active Directory to generate authentication tokens.",
+                            "required": true,
+                            "editable": true,
+                            "visible": true,
+                            "type": "text",
+                            "name": "client_id",
+                            "tooltip": "Enter the Azure Application ID for authentication."
+                        },
+                        {
+                            "title": "Client Secret",
+                            "description": "Specify the Unique Client Secret of the Azure AD application for authentication. For information on how to get the secret key, see https://docs.microsoft.com/en-us/windows/security/threat-protection/microsoft-defender-atp/exposed-apis-create-app-webapp.",
+                            "required": true,
+                            "editable": true,
+                            "visible": true,
+                            "type": "password",
+                            "name": "client_secret",
+                            "tooltip": "Enter the Client Secret for authentication."
+                        }
+                    ],
+                    "On behalf of User - Delegate Permission": [
+                        {
+                            "title": "Server URL",
+                            "required": true,
+                            "editable": true,
+                            "visible": true,
+                            "type": "text",
+                            "name": "resource",
+                            "value": "https://graph.microsoft.com",
+                            "description": "Specify the service-based URI to connect and perform automated operations.",
+                            "tooltip": "Specify the service-based URI to connect and perform automated operations."
+                        },
+                        {
+                            "title": "Tenant ID",
+                            "description": "Specify the ID of the tenant assigned to you by the Azure application registration portal.",
+                            "tooltip": "Specify the ID of the tenant assigned to you by the Azure application registration portal.",
+                            "required": true,
+                            "editable": true,
+                            "visible": true,
+                            "type": "text",
+                            "name": "tenant"
+                        },
+                        {
+                            "title": "Client ID",
+                            "description": "Specify the Unique Application ID of the Azure Active Directory application to create an authentication token required to access the API. For information on getting authentication tokens, see the Getting Authentication Tokens section.",
+                            "required": true,
+                            "editable": true,
+                            "visible": true,
+                            "type": "text",
+                            "name": "client_id",
+                            "tooltip": "Specify the Unique Application ID of the Azure Active Directory application to create an authentication token required to access the API. For information on getting authentication tokens, see the Getting Authentication Tokens section."
+                        },
+                        {
+                            "title": "Client Secret",
+                            "description": "Specify the Unique Client Secret of the Azure Active Directory application that is used to create an authentication token required to access the API. For information on how to get the secret key, see https://docs.microsoft.com/en-us/windows/security/threat-protection/microsoft-defender-atp/exposed-apis-create-app-webapp.",
+                            "required": true,
+                            "editable": true,
+                            "visible": true,
+                            "type": "password",
+                            "name": "client_secret",
+                            "tooltip": "Specify the Unique Client Secret of the Azure Active Directory application that is used to create an authentication token required to access the API."
+                        },
+                        {
+                            "title": "Authorization Code",
+                            "required": true,
+                            "editable": true,
+                            "visible": true,
+                            "type": "password",
+                            "name": "code",
+                            "tooltip": "Enter the authorization code.",
+                            "description": "Enter the authorization code obtained during authentication."
+                        },
+                        {
+                            "title": "Redirect URL",
+                            "tooltip": "Enter the registered redirect URI.",
+                            "required": false,
+                            "editable": true,
+                            "visible": true,
+                            "type": "text",
+                            "name": "redirect_url",
+                            "placeholder": "e.g. https://localhost/myapp",
+                            "description": "Specify the registered redirect URI for authentication responses."
+                        }
+                    ]
+                }
+            },
+            {
+                "title": "Verify SSL",
+                "description": "Indicates whether the SSL certificate for the server should be verified. Default: True.",
+                "type": "checkbox",
+                "name": "verify_ssl",
+                "required": false,
+                "visible": true,
+                "editable": true,
+                "value": true,
+                "tooltip": "Enable or disable SSL certificate verification."
+            }
+        ]
+    },
+    "operations": [
+        {
+            "title": "Get Host Reputation",
+            "description": "Retrieves security reputation and threat intelligence data for a specified host to assess its risk level and potential malicious activity.",
+            "operation": "get_host_reputation",
+            "annotation": "get_host_reputation",
+            "category": "containment",
+            "parameters": [
+                {
+                    "title": "Host ID",
+                    "type": "text",
+                    "description": "Unique identifier (IP address or FQDN) used to retrieve security reputation and threat intelligence data.",
+                    "name": "hostId",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "tooltip": "Enter an IP or FQDN to retrieve reputation data."
+                }
+            ],
+            "output_schema": {
+                "@odata.type": "",
+                "id": "",
+                "classification": "",
+                "score": "",
+                "rules": [
+                  {
+                    "name": "",
+                    "description": "",
+                    "severity": "",
+                    "relatedDetailsUrl": ""
+                  }
+                ]
+            },            
+            "enabled": true,
+            "open": false
+        },
+        {
+            "title": "Get Host Details",
+            "description": "Unique identifier (IP address or FQDN) used to retrieve detailed host information.",
+            "operation": "get_host_details",
+            "annotation": "get_host_details",
+            "category": "containment",
+            "parameters": [
+                {
+                    "title": "Host ID",
+                    "type": "text",
+                    "description": "Unique identifier for the host, which can be an IP address or Fully Qualified Domain Name (FQDN), used to retrieve its security reputation and threat intelligence data.",
+                    "name": "hostId",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "tooltip": "Enter an IP or FQDN to retrieve host details."
+                }
+            ],
+            "output_schema": {
+                "@odata.type": "",
+                "id": "",
+                "firstSeenDateTime": "",
+                "lastSeenDateTime": "",
+                "registrar": "",
+                "registrant": ""
+            },
+            "enabled": true,
+            "open": false
+        },
+        {
+            "title": "Get Whois Record",
+            "description": "Retrieves domain registration and ownership information through Whois lookup, either by host identifier or specific Whois record ID.",
+            "operation": "get_whoisrecord",
+            "annotation": "get_whoisrecord",
+            "category": "containment",
+            "parameters": [
+                {
+                    "title": "Select Host ID or whoisRecord ID",
+                    "type": "select",
+                    "name": "type",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "description": "Choose whether to retrieve Whois information using a host identifier or a specific Whois record ID.",
+                    "tooltip": "Select Host ID or Whois Record ID.",
+                    "options": [
+                        "Host ID",
+                        "whoisRecord ID"
+                    ],
+                    "onchange": {
+                        "Host ID": [
+                            {
+                                "title": "Host ID",
+                                "description": "Enter an IP or FQDN to retrieve Whois registration information.",
+                                "type": "text",
+                                "name": "hostId",
+                                "required": true,
+                                "visible": true,
+                                "editable": true,
+                                "tooltip": "Enter an IP or FQDN for Whois lookup."
+                            }
+                        ],
+                        "whoisRecord ID": [
+                            {
+                                "title": "whoisRecord ID",
+                                "type": "text",
+                                "name": "whoisRecordId",
+                                "required": true,
+                                "visible": true,
+                                "editable": true,
+                                "description": "Enter a specific Whois record identifier to retrieve detailed registration information.",
+                                "tooltip": "Enter the Whois Record ID."
+                            }
+                        ]
+                    },
+                    "output_schema": {
+                        "@odata.context": "",
+                        "id": "",
+                        "expirationDateTime": "",
+                        "registrationDateTime": "",
+                        "firstSeenDateTime": "",
+                        "lastSeenDateTime": "",
+                        "lastUpdateDateTime": "",
+                        "billing": "",
+                        "noc": "",
+                        "zone": "",
+                        "whoisServer": "",
+                        "domainStatus": "",
+                        "rawWhoisText": "",
+                        "abuse": {
+                            "email": "",
+                            "name": "",
+                            "organization": "",
+                            "telephone": "",
+                            "fax": "",
+                            "address": {
+                                "city": "",
+                                "countryOrRegion": "",
+                                "postalCode": "",
+                                "state": "",
+                                "street": ""
+                            }
+                        },
+                        "admin": {
+                            "email": "",
+                            "name": "",
+                            "organization": "",
+                            "telephone": "",
+                            "fax": "",
+                            "address": {
+                                "city": "",
+                                "countryOrRegion": "",
+                                "postalCode": "",
+                                "state": "",
+                                "street": ""
+                            }
+                        },
+                        "registrar": {
+                            "email": "",
+                            "name": "",
+                            "organization": "",
+                            "telephone": "",
+                            "fax": "",
+                            "address": {
+                                "city": "",
+                                "countryOrRegion": "",
+                                "postalCode": "",
+                                "state": "",
+                                "street": ""
+                            }
+                        },
+                        "registrant": {
+                            "email": "",
+                            "name": "",
+                            "organization": "",
+                            "telephone": "",
+                            "fax": "",
+                            "address": {
+                                "city": "",
+                                "countryOrRegion": "",
+                                "postalCode": "",
+                                "state": "",
+                                "street": ""
+                            }
+                        },
+                        "technical": {
+                            "email": "",
+                            "name": "",
+                            "organization": "",
+                            "telephone": "",
+                            "fax": "",
+                            "address": {
+                                "city": "",
+                                "countryOrRegion": "",
+                                "postalCode": "",
+                                "state": "",
+                                "street": ""
+                            }
+                        },
+                        "nameservers": [
+                            {
+                                "firstSeenDateTime": "",
+                                "lastSeenDateTime": "",
+                                "host": {
+                                    "id": ""
+                                }
+                            }
+                        ],
+                        "host": {
+                            "@odata.type": "",
+                            "id": ""
+                        }
+                    }
+                }
+            ],
+            "enabled": true,
+            "open": false
+        },
+        {
+            "title": "List Components",
+            "description": "Retrieves an inventory of software components, services, and applications detected on the specified host system.",
+            "operation": "list_components",
+            "annotation": "list_components",
+            "category": "containment",
+            "parameters": [
+                {
+                    "title": "Host ID",
+                    "description": "Enter an IP or FQDN to list detected software components and services.",
+                    "type": "text",
+                    "name": "hostId",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "tooltip": "Enter an IP or FQDN to view host components."
+                }
+            ],
+            "output_schema":{
+                "value": [
+                  {
+                    "@odata.type": "",
+                    "id": "",
+                    "firstSeenDateTime": "",
+                    "lastSeenDateTime": "",
+                    "name": "",
+                    "version": "",
+                    "category": "",
+                    "host": {
+                      "id": ""
+                    }
+                  }
+                ]
+              },              
+            "enabled": true,
+            "open": false
+        },
+        {
+            "title": "List Passive DNS",
+            "description": "Retrieves historical DNS resolution records showing how domain names have mapped to IP addresses over time.",
+            "operation": "list_passiveDns",
+            "annotation": "list_passiveDns",
+            "category": "containment",
+            "parameters": [
+                {
+                    "title": "Host ID",
+                    "description": "Enter an IP or FQDN to retrieve historical DNS resolution records.",
+                    "type": "text",
+                    "name": "hostId",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "tooltip": "Enter an IP or FQDN for DNS history."
+                }
+            ],
+            "output_schema":{
+                "value": [
+                  {
+                    "@odata.type": "",
+                    "id": "",
+                    "firstSeenDateTime": "",
+                    "lastSeenDateTime": "",
+                    "collectedDateTime": "",
+                    "recordType": "",
+                    "parentHost": {
+                      "id": ""
+                    },
+                    "artifact": {
+                      "@odata.type": "",
+                      "id": ""
+                    }
+                  }
+                ]
+              },              
+            "enabled": true,
+            "open": false
+        },
+        {
+            "title": "List Passive DNS Reverse",
+            "description": "Retrieves historical reverse DNS records showing how IP addresses have mapped to domain names over time.",
+            "operation": "list_passiveDns_reverse",
+            "annotation": "list_passiveDns_reverse",
+            "category": "containment",
+            "parameters": [
+                {
+                    "title": "Host ID",
+                    "description": "Enter an IP or FQDN to retrieve reverse DNS resolution records.",
+                    "type": "text",
+                    "name": "hostId",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "tooltip": "Enter an IP or FQDN for reverse DNS lookup."
+                }
+            ],
+            "output_schema":{
+                "value": [
+                  {
+                    "@odata.type": "",
+                    "id": "",
+                    "firstSeenDateTime": "",
+                    "lastSeenDateTime": "",
+                    "collectedDateTime": "",
+                    "recordType": "",
+                    "parentHost": {
+                      "id": ""
+                    },
+                    "artifact": {
+                      "@odata.type": "",
+                      "id": ""
+                    }
+                  }
+                ]
+              },              
+            "enabled": true,
+            "open": false
+        },
+        {
+            "title": "List Host Ports",
+            "description": "Retrieves a comprehensive list of open ports, associated services, and network protocols active on the specified host.",
+            "operation": "list_hostPorts",
+            "annotation": "list_hostPorts",
+            "category": "containment",
+            "parameters": [
+                {
+                    "title": "Host ID",
+                    "description": "Enter an IP or FQDN to list open ports and services running on the host.",
+                    "type": "text",
+                    "name": "hostId",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "tooltip": "Enter an IP or FQDN to list open ports."
+                }
+            ],
+            "output_schema":{
+                "value": [
+                  {
+                    "id": "",
+                    "port": "",
+                    "firstSeenDateTime": "",
+                    "lastSeenDateTime": "",
+                    "lastScanDateTime": "",
+                    "timesObserved": "",
+                    "status": "",
+                    "protocol": "",
+                    "banners": [
+                      {
+                        "banner": "",
+                        "firstSeenDateTime": "",
+                        "lastSeenDateTime": "",
+                        "scanProtocol": "",
+                        "timesObserved": ""
+                      }
+                    ],
+                    "services": [
+                      {
+                        "firstSeenDateTime": "",
+                        "lastSeenDateTime": "",
+                        "isRecent": "",
+                        "component": {
+                          "id": "",
+                          "name": "",
+                          "version": "",
+                          "category": ""
+                        }
+                      }
+                    ],
+                    "mostRecentSslCertificate": {
+                      "id": ""
+                    },
+                    "host": {
+                      "id": ""
+                    }
+                  }
+                ]
+              },              
+            "enabled": true,
+            "open": false
+        },
+        {
+            "title": "List Host SSL Certificates",
+            "description": "Retrieves all SSL/TLS certificates associated with the host, including validity dates, issuers, and certificate details.",
+            "operation": "list_host_ssl_certificates",
+            "annotation": "list_host_ssl_certificates",
+            "category": "containment",
+            "parameters": [
+                {
+                    "title": "Host ID",
+                    "description": "Enter an IP or FQDN to retrieve SSL/TLS certificates associated with the host.",
+                    "type": "text",
+                    "name": "hostId",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "tooltip": "Enter an IP or FQDN to view SSL certificates."
+                }
+            ],
+            "output_schema":{
+                "value": [
+                  {
+                    "id": "",
+                    "firstSeenDateTime": "",
+                    "lastSeenDateTime": "",
+                    "ports": [
+                      {
+                        "port": "",
+                        "firstSeenDateTime": "",
+                        "lastSeenDateTime": ""
+                      }
+                    ],
+                    "host": {
+                      "@odata.type": "",
+                      "id": ""
+                    },
+                    "sslCertificate": {
+                      "@odata.context": "",
+                      "id": "",
+                      "firstSeenDateTime": "",
+                      "lastSeenDateTime": "",
+                      "fingerprint": "",
+                      "sslVersion": "",
+                      "expirationDateTime": "",
+                      "issueDateTime": "",
+                      "sha1": "",
+                      "serialNumber": "",
+                      "subject": {
+                        "commonName": "",
+                        "address": {
+                          "city": "",
+                          "countryOrRegion": "",
+                          "postalCode": "",
+                          "postOfficeBox": "",
+                          "state": "",
+                          "street": "",
+                          "type": ""
+                        },
+                        "email": "",
+                        "givenName": "",
+                        "organizationName": "",
+                        "organizationUnitName": "",
+                        "serialNumber": "",
+                        "surname": "",
+                        "alternateName": []
+                      },
+                      "issuer": {
+                        "commonName": "",
+                        "address": {
+                          "city": "",
+                          "countryOrRegion": "",
+                          "postalCode": "",
+                          "postOfficeBox": "",
+                          "state": "",
+                          "street": "",
+                          "type": ""
+                        },
+                        "email": "",
+                        "givenName": "",
+                        "organizationName": "",
+                        "organizationUnitName": "",
+                        "serialNumber": "",
+                        "surname": "",
+                        "alternateName": []
+                      }
+                    }
+                  }
+                ]
+              },              
+            "enabled": true,
+            "open": false
+        },
+        {
+            "title": "Get Host SSL Certificate",
+            "description": "Retrieves detailed information about a specific SSL/TLS certificate, including chain of trust, cryptographic details, and validation status.",
+            "operation": "get_host_ssl_certificate",
+            "annotation": "get_host_ssl_certificate",
+            "category": "containment",
+            "parameters": [
+                {
+                    "title": "Host Certificate ID",
+                    "type": "text",
+                    "description":"Enter the unique SSL certificate identifier to retrieve details such as chain of trust and validation status.",
+                    "name": "hostSslCertificateId",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "tooltip": "Enter the certificate ID for SSL details."
+                }
+            ],
+            "output_schema":{
+                "value": {
+                  "id": "",
+                  "firstSeenDateTime": "",
+                  "lastSeenDateTime": "",
+                  "ports": [
+                    {
+                      "port": "",
+                      "firstSeenDateTime": "",
+                      "lastSeenDateTime": ""
+                    }
+                  ],
+                  "host": {
+                    "@odata.type": "",
+                    "id": ""
+                  },
+                  "sslCertificate": {
+                    "@odata.context": "",
+                    "id": "",
+                    "firstSeenDateTime": "",
+                    "lastSeenDateTime": "",
+                    "fingerprint": "",
+                    "sslVersion": "",
+                    "expirationDateTime": "",
+                    "issueDateTime": "",
+                    "sha1": "",
+                    "serialNumber": "",
+                    "subject": {
+                      "commonName": "",
+                      "address": {
+                        "city": "",
+                        "countryOrRegion": "",
+                        "postalCode": "",
+                        "postOfficeBox": "",
+                        "state": "",
+                        "street": "",
+                        "type": ""
+                      },
+                      "email": "",
+                      "givenName": "",
+                      "organizationName": "",
+                      "organizationUnitName": "",
+                      "serialNumber": "",
+                      "surname": "",
+                      "alternateName": []
+                    },
+                    "issuer": {
+                      "commonName": "",
+                      "address": {
+                        "city": "",
+                        "countryOrRegion": "",
+                        "postalCode": "",
+                        "postOfficeBox": "",
+                        "state": "",
+                        "street": "",
+                        "type": ""
+                      },
+                      "email": "",
+                      "givenName": "",
+                      "organizationName": "",
+                      "organizationUnitName": "",
+                      "serialNumber": "",
+                      "surname": "",
+                      "alternateName": []
+                    }
+                  }
+                }
+              },              
+            "enabled": true,
+            "open": false
+        },
+        {
+            "title": "Get Host Component",
+            "description": "Retrieves detailed information about a specific software component, including version, configuration, and security status.",
+            "operation": "get_host_component",
+            "annotation": "get_host_component",
+            "category": "containment",
+            "parameters": [
+                {
+                    "title": "Host Component ID",
+                    "type": "text",
+                    "description": "Enter the component identifier to retrieve software version, configuration, and security details.",
+                    "name": "hostComponentId",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "tooltip": "Enter the component ID for details."
+                }
+            ],
+            "output_schema":{
+                "host_component_id": "",
+                "first_seen": "",
+                "last_seen": "",
+                "component_name": "",
+                "component_version": "",
+                "component_category": "",
+                "host_id": ""
+              },              
+            "enabled": true,
+            "open": false
+        },
+        {
+            "title": "List Indicators",
+            "description": "Retrieves a comprehensive list of threat indicators, including IOCs, behavioral patterns, and security alerts from the specified intelligence profile.",
+            "operation": "list_indicators",
+            "annotation": "list_indicators",
+            "category": "containment",
+            "parameters": [
+                {
+                    "title": "Intelligence Profile ID",
+                    "type": "text",
+                    "description": "Enter the intelligence profile identifier to retrieve associated threat indicators.",
+                    "name": "intelligenceProfileId",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "tooltip": "Enter the intelligence profile ID."
+                }
+            ],
+            "output_schema":{
+                "indicator_id": "",
+                "source": "",
+                "first_seen": "",
+                "last_seen": "",
+                "artifact_id": ""
+              },              
+            "enabled": true,
+            "open": false
+        }
+    ],
+    "category": [
+        "Threat Intelligence",
+        "ThreatIntel"
+    ],
+    "contributor": null,
+    "active": true,
+    "cs_compatible": true,
+    "system": false,
+    "playbook_collections": [
+        {
+            "@id": "/api/3/workflow_collections/1b8bcd1a-e006-46c3-9792-c3159ee2e3c0",
+            "name": "Sample - Microsoft Defender Threat Intelligence - 1.0.0",
+            "image": "/api/3/images/a76cc75b-3f79-4082-9682-4350590841e6",
+            "description": "Sample playbooks for \"Microsoft Defender Threat Intelligence\" connector. If you are planning to use any of the sample playbooks in your environment, ensure that you clone those playbooks and move them to a different collection, since the sample playbook collection gets deleted during connector upgrade and delete."
+        }
+    ],
+    "icon_small": "data:image/jpeg;base64,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8V1vYnCUEJLB6G3bjlNKY86pKxKJYOOXdF33+Xy+AJKYXPqtjddW73wGBMHntuVp/eHLUjQjbaKezs09uuc979XeEdxqMPeMsSlKadzxAK7T0dFB+/r6kITH4/H4RVEMGoYRSjXddedo+649TPRVV/rAqYlilUz3yHTDetITicb3n/uHJzo0AQBYOkmMHgkIghA3TTNZOpa3t7fTsbExAVPBGJNt23aUyNYvvmn4nqeeNQINX3VtP9OYJUKlGgYIjPeOho+98KGgxhA0yzlPIwGn9AjBiUqk3TbjEEESePbMZDJeNCWSoJRW5f2hxpG7du/KhCN3z7jITCtFVIlyxurOH+2e13noJJiaKgiC6oIzxhJF9+M9AQmplQScgkM/eDweUdM0ryAIfpcEF4Q515fcv3FixeatTPSgOrOGlEtkFnz6u+PBKyeHKIAGALkieKoInMQKME0TvZANBoPatGsZroh+wBsSkjAMw0MpdUkEbduu0msWtoyt2rk907jsjuK1AQi3rZrBj3vmnzr4qZhL4uK4LSI4HhBSgiCkLMtKiaKIr/i5msvldNu2jem7SHEHriTBGJNUVfVTSmU0J2MsCKIYysy/PTK1eN0GYumsof+9Ljl6EfOKe53JOddRXiSA4KgCYyxDKcU9Pafrup7P581wOOxczWaOUlpcY8qyLCqK4sUyJYTInHMFJz4TQnyccy8hREACeAGllOY555plWeh8JJLzer2aaZq6IAiGrutWW1ubjbfj/wBXCB2zpIJGswAAAABJRU5ErkJggg==",
+    "icon_large": "data:image/jpeg;base64,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",
+    "help_online": "",
+    "vendor_version": null
+}
