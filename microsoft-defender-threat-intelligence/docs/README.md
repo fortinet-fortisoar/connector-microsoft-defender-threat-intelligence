@@ -32,7 +32,7 @@ For the procedure to configure a connector, click [here](https://docs.fortinet.c
 ## Actions supported by the connector
 The following automated operations can be included in playbooks and you can also use the annotations to access operations from FortiSOAR&trade; release 4.10.0 and onwards:
 <table border=1><thead><tr><th>Function<br></th><th>Description<br></th><th>Annotation and Category<br></th></tr></thead><tbody><tr><td>Get Host Reputation<br></td><td>Retrieves security reputation and threat intelligence data for a specified host to assess its risk level and potential malicious activity.<br></td><td>get_host_reputation <br/>Containment<br></td></tr>
-<tr><td>Get Host Details<br></td><td>Unique identifier (IP address or FQDN) used to retrieve detailed host information.<br></td><td>get_host_details <br/>Containment<br></td></tr>
+<tr><td>Get Host Details<br></td><td>Retrieves security reputation and threat intelligence details for a specified host using its IP address or Fully Qualified Domain Name (FQDN).<br></td><td>get_host_details <br/>Containment<br></td></tr>
 <tr><td>Get Whois Record<br></td><td>Retrieves domain registration and ownership information through Whois lookup, either by host identifier or specific Whois record ID.<br></td><td>get_whoisrecord <br/>Containment<br></td></tr>
 <tr><td>List Components<br></td><td>Retrieves an inventory of software components, services, and applications detected on the specified host system.<br></td><td>list_components <br/>Containment<br></td></tr>
 <tr><td>List Passive DNS<br></td><td>Retrieves historical DNS resolution records showing how domain names have mapped to IP addresses over time.<br></td><td>list_passiveDns <br/>Containment<br></td></tr>
@@ -46,7 +46,7 @@ The following automated operations can be included in playbooks and you can also
 
 ### operation: Get Host Reputation
 #### Input parameters
-<table border=1><thead><tr><th>Parameter<br></th><th>Description<br></th></tr></thead><tbody><tr><td>Host ID<br></td><td>Unique identifier (IP address or FQDN) used to retrieve security reputation and threat intelligence data.<br>
+<table border=1><thead><tr><th>Parameter<br></th><th>Description<br></th></tr></thead><tbody><tr><td>Host ID<br></td><td>Unique identifier for the host, which can be an IP address or Fully Qualified Domain Name (FQDN), used to retrieve its security reputation and threat intelligence data.<br>
 </td></tr></tbody></table>
 
 #### Output

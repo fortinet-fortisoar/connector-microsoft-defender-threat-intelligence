@@ -157,7 +157,7 @@
                 {
                     "title": "Host ID",
                     "type": "text",
-                    "description": "Unique identifier (IP address or FQDN) used to retrieve security reputation and threat intelligence data.",
+                    "description": "Unique identifier for the host, which can be an IP address or Fully Qualified Domain Name (FQDN), used to retrieve its security reputation and threat intelligence data.",
                     "name": "hostId",
                     "required": true,
                     "visible": true,
@@ -184,7 +184,7 @@
         },
         {
             "title": "Get Host Details",
-            "description": "Unique identifier (IP address or FQDN) used to retrieve detailed host information.",
+            "description": "Retrieves security reputation and threat intelligence details for a specified host using its IP address or Fully Qualified Domain Name (FQDN).",
             "operation": "get_host_details",
             "annotation": "get_host_details",
             "category": "containment",
@@ -783,7 +783,7 @@
         "Threat Intelligence",
         "ThreatIntel"
     ],
-    "contributor": null,
+    "contributor": "Roshan Bangera",
     "active": true,
     "cs_compatible": true,
     "system": false,

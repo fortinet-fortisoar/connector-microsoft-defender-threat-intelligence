@@ -30,7 +30,7 @@ class SetupSession(object):
                 'Prefer': 'return=representation'
             })
             self.session.verify = self.verify_ssl
-            logger.error("Session set up successfully")
+            logger.debug("Session set up successfully")
         except Exception as e:
             logger.exception('Error setting up session: {0}'.format(e))
             raise ConnectorError('Error setting up session: {0}'.format(e))
@@ -38,20 +38,20 @@ class SetupSession(object):
 
 def get_host_reputation(config, params):
     try:
-        logger.error("Starting 'get_host_reputation' operation with inputs: %s", params)
+        logger.debug("Starting 'get_host_reputation' operation with inputs: %s", params)
         microsoft_graph = SetupSession(config)
         graph_api_endpoint = '{0}/{1}'.format(microsoft_graph.ms.host, config.get('api_version'))
-        logger.error("API endpoint constructed: %s", graph_api_endpoint)
+        logger.debug("API endpoint constructed: %s", graph_api_endpoint)
 
         url = graph_api_endpoint + '/security/threatIntelligence/hosts/{0}/reputation'.format(params.get('hostId'))
-        logger.error("Constructed URL for host reputation request: %s", url)
+        logger.debug("Constructed URL for host reputation request: %s", url)
 
         microsoft_graph.session.headers.pop('Prefer', '')
         response = microsoft_graph.session.get(url=url)
         microsoft_graph.session.close()
 
         if response.ok:
-            logger.error("Received successful response with response: %s", response.json())
+            logger.debug("Received successful response with response: %s", response.json())
             return response.json()
         else:
             logger.error("Failed request: %s, Response: %s, Reason: %s", url, response.content, response.reason)
@@ -65,20 +65,20 @@ def get_host_reputation(config, params):
 
 def get_host_details(config, params):
     try:
-        logger.error("Starting 'get_host_reputation' operation with inputs: %s", params)
+        logger.debug("Starting 'get_host_reputation' operation with inputs: %s", params)
         microsoft_graph = SetupSession(config)
         graph_api_endpoint = '{0}/{1}'.format(microsoft_graph.ms.host, config.get('api_version'))
-        logger.error("API endpoint constructed: %s", graph_api_endpoint)
+        logger.debug("API endpoint constructed: %s", graph_api_endpoint)
 
         url = graph_api_endpoint + '/security/threatIntelligence/hosts/{0}'.format(params.get('hostId'))
-        logger.error("Constructed URL for host reputation request: %s", url)
+        logger.debug("Constructed URL for host reputation request: %s", url)
 
         microsoft_graph.session.headers.pop('Prefer', '')
         response = microsoft_graph.session.get(url=url)
         microsoft_graph.session.close()
 
         if response.ok:
-            logger.error("Received successful response with response: %s", response.json())
+            logger.debug("Received successful response with response: %s", response.json())
             return response.json()
         else:
             logger.error("Failed request: %s, Response: %s, Reason: %s", url, response.content, response.reason)
@@ -92,10 +92,10 @@ def get_host_details(config, params):
 
 def get_whoisrecord(config, params):
     try:
-        logger.error("Starting 'get_whoisrecord' operation with inputs: %s", params)
+        logger.debug("Starting 'get_whoisrecord' operation with inputs: %s", params)
         microsoft_graph = SetupSession(config)
         graph_api_endpoint = '{0}/{1}'.format(microsoft_graph.ms.host, config.get('api_version'))
-        logger.error("API endpoint constructed: %s", graph_api_endpoint)
+        logger.debug("API endpoint constructed: %s", graph_api_endpoint)
 
         request_type = params.get('type')
         if request_type == "Host ID":
@@ -105,14 +105,14 @@ def get_whoisrecord(config, params):
         else:
             raise ConnectorError("Invalid type specified. Must be 'Host ID' or 'whoisRecord ID'")
 
-        logger.error("Constructed URL for WHOIS record request: %s", url)
+        logger.debug("Constructed URL for WHOIS record request: %s", url)
 
         microsoft_graph.session.headers.pop('Prefer', '')
         response = microsoft_graph.session.get(url=url)
         microsoft_graph.session.close()
 
         if response.ok:
-            logger.error("Received successful response with response: %s", response.json())
+            logger.debug("Received successful response with response: %s", response.json())
             return response.json()
         else:
             logger.error("Failed request: %s, Response: %s, Reason: %s", url, response.content, response.reason)
@@ -126,20 +126,20 @@ def get_whoisrecord(config, params):
 
 def list_components(config, params):
     try:
-        logger.error("Starting 'get_host_reputation' operation with inputs: %s", params)
+        logger.debug("Starting 'get_host_reputation' operation with inputs: %s", params)
         microsoft_graph = SetupSession(config)
         graph_api_endpoint = '{0}/{1}'.format(microsoft_graph.ms.host, config.get('api_version'))
-        logger.error("API endpoint constructed: %s", graph_api_endpoint)
+        logger.debug("API endpoint constructed: %s", graph_api_endpoint)
 
         url = graph_api_endpoint + '/security/threatIntelligence/hosts/{0}/components'.format(params.get('hostId'))
-        logger.error("Constructed URL for host reputation request: %s", url)
+        logger.debug("Constructed URL for host reputation request: %s", url)
 
         microsoft_graph.session.headers.pop('Prefer', '')
         response = microsoft_graph.session.get(url=url)
         microsoft_graph.session.close()
 
         if response.ok:
-            logger.error("Received successful response with response: %s", response.json())
+            logger.debug("Received successful response with response: %s", response.json())
             return response.json()
         else:
             logger.error("Failed request: %s, Response: %s, Reason: %s", url, response.content, response.reason)
@@ -153,20 +153,20 @@ def list_components(config, params):
 
 def list_passiveDns(config, params):
     try:
-        logger.error("Starting 'get_host_reputation' operation with inputs: %s", params)
+        logger.debug("Starting 'get_host_reputation' operation with inputs: %s", params)
         microsoft_graph = SetupSession(config)
         graph_api_endpoint = '{0}/{1}'.format(microsoft_graph.ms.host, config.get('api_version'))
-        logger.error("API endpoint constructed: %s", graph_api_endpoint)
+        logger.debug("API endpoint constructed: %s", graph_api_endpoint)
 
         url = graph_api_endpoint + '/security/threatIntelligence/hosts/{0}/passiveDns'.format(params.get('hostId'))
-        logger.error("Constructed URL for host reputation request: %s", url)
+        logger.debug("Constructed URL for host reputation request: %s", url)
 
         microsoft_graph.session.headers.pop('Prefer', '')
         response = microsoft_graph.session.get(url=url)
         microsoft_graph.session.close()
 
         if response.ok:
-            logger.error("Received successful response with response: %s", response.json())
+            logger.debug("Received successful response with response: %s", response.json())
             return response.json()
         else:
             logger.error("Failed request: %s, Response: %s, Reason: %s", url, response.content, response.reason)
@@ -180,20 +180,20 @@ def list_passiveDns(config, params):
 
 def list_passiveDns_reverse(config, params):
     try:
-        logger.error("Starting 'get_host_reputation' operation with inputs: %s", params)
+        logger.debug("Starting 'get_host_reputation' operation with inputs: %s", params)
         microsoft_graph = SetupSession(config)
         graph_api_endpoint = '{0}/{1}'.format(microsoft_graph.ms.host, config.get('api_version'))
-        logger.error("API endpoint constructed: %s", graph_api_endpoint)
+        logger.debug("API endpoint constructed: %s", graph_api_endpoint)
 
         url = graph_api_endpoint + '/security/threatIntelligence/hosts/{0}/passiveDnsReverse'.format(params.get('hostId'))
-        logger.error("Constructed URL for host reputation request: %s", url)
+        logger.debug("Constructed URL for host reputation request: %s", url)
 
         microsoft_graph.session.headers.pop('Prefer', '')
         response = microsoft_graph.session.get(url=url)
         microsoft_graph.session.close()
 
         if response.ok:
-            logger.error("Received successful response with response: %s", response.json())
+            logger.debug("Received successful response with response: %s", response.json())
             return response.json()
         else:
             logger.error("Failed request: %s, Response: %s, Reason: %s", url, response.content, response.reason)
@@ -207,20 +207,20 @@ def list_passiveDns_reverse(config, params):
 
 def list_hostPorts(config, params):
     try:
-        logger.error("Starting 'get_host_reputation' operation with inputs: %s", params)
+        logger.debug("Starting 'get_host_reputation' operation with inputs: %s", params)
         microsoft_graph = SetupSession(config)
         graph_api_endpoint = '{0}/{1}'.format(microsoft_graph.ms.host, config.get('api_version'))
-        logger.error("API endpoint constructed: %s", graph_api_endpoint)
+        logger.debug("API endpoint constructed: %s", graph_api_endpoint)
 
         url = graph_api_endpoint + '/security/threatIntelligence/hosts/{0}/ports'.format(params.get('hostId'))
-        logger.error("Constructed URL for host reputation request: %s", url)
+        logger.debug("Constructed URL for host reputation request: %s", url)
 
         microsoft_graph.session.headers.pop('Prefer', '')
         response = microsoft_graph.session.get(url=url)
         microsoft_graph.session.close()
 
         if response.ok:
-            logger.error("Received successful response with response: %s", response.json())
+            logger.debug("Received successful response with response: %s", response.json())
             return response.json()
         else:
             logger.error("Failed request: %s, Response: %s, Reason: %s", url, response.content, response.reason)
@@ -234,20 +234,20 @@ def list_hostPorts(config, params):
 
 def list_host_ssl_certificates(config, params):
     try:
-        logger.error("Starting 'get_host_reputation' operation with inputs: %s", params)
+        logger.debug("Starting 'get_host_reputation' operation with inputs: %s", params)
         microsoft_graph = SetupSession(config)
         graph_api_endpoint = '{0}/{1}'.format(microsoft_graph.ms.host, config.get('api_version'))
-        logger.error("API endpoint constructed: %s", graph_api_endpoint)
+        logger.debug("API endpoint constructed: %s", graph_api_endpoint)
 
         url = graph_api_endpoint + '/security/threatIntelligence/hosts/{0}/sslCertificates'.format(params.get('hostId'))
-        logger.error("Constructed URL for host reputation request: %s", url)
+        logger.debug("Constructed URL for host reputation request: %s", url)
 
         microsoft_graph.session.headers.pop('Prefer', '')
         response = microsoft_graph.session.get(url=url)
         microsoft_graph.session.close()
 
         if response.ok:
-            logger.error("Received successful response with response: %s", response.json())
+            logger.debug("Received successful response with response: %s", response.json())
             return response.json()
         else:
             logger.error("Failed request: %s, Response: %s, Reason: %s", url, response.content, response.reason)
@@ -261,20 +261,20 @@ def list_host_ssl_certificates(config, params):
 
 def get_host_ssl_certificate(config, params):
     try:
-        logger.error("Starting 'get_host_reputation' operation with inputs: %s", params)
+        logger.debug("Starting 'get_host_reputation' operation with inputs: %s", params)
         microsoft_graph = SetupSession(config)
         graph_api_endpoint = '{0}/{1}'.format(microsoft_graph.ms.host, config.get('api_version'))
-        logger.error("API endpoint constructed: %s", graph_api_endpoint)
+        logger.debug("API endpoint constructed: %s", graph_api_endpoint)
 
         url = graph_api_endpoint + '/security/threatIntelligence/hostSslCertificates/{0}'.format(params.get('hostSslCertificateId'))
-        logger.error("Constructed URL for host reputation request: %s", url)
+        logger.debug("Constructed URL for host reputation request: %s", url)
 
         microsoft_graph.session.headers.pop('Prefer', '')
         response = microsoft_graph.session.get(url=url)
         microsoft_graph.session.close()
 
         if response.ok:
-            logger.error("Received successful response with response: %s", response.json())
+            logger.debug("Received successful response with response: %s", response.json())
             return response.json()
         else:
             logger.error("Failed request: %s, Response: %s, Reason: %s", url, response.content, response.reason)
@@ -288,20 +288,20 @@ def get_host_ssl_certificate(config, params):
 
 def get_host_component(config, params):
     try:
-        logger.error("Starting 'get_host_reputation' operation with inputs: %s", params)
+        logger.debug("Starting 'get_host_reputation' operation with inputs: %s", params)
         microsoft_graph = SetupSession(config)
         graph_api_endpoint = '{0}/{1}'.format(microsoft_graph.ms.host, config.get('api_version'))
-        logger.error("API endpoint constructed: %s", graph_api_endpoint)
+        logger.debug("API endpoint constructed: %s", graph_api_endpoint)
 
         url = graph_api_endpoint + '/security/threatIntelligence/hostComponents/{0}'.format(params.get('hostComponentId'))
-        logger.error("Constructed URL for host reputation request: %s", url)
+        logger.debug("Constructed URL for host reputation request: %s", url)
 
         microsoft_graph.session.headers.pop('Prefer', '')
         response = microsoft_graph.session.get(url=url)
         microsoft_graph.session.close()
 
         if response.ok:
-            logger.error("Received successful response with response: %s", response.json())
+            logger.debug("Received successful response with response: %s", response.json())
             return response.json()
         else:
             logger.error("Failed request: %s, Response: %s, Reason: %s", url, response.content, response.reason)
@@ -315,20 +315,20 @@ def get_host_component(config, params):
 
 def list_indicators(config, params):
     try:
-        logger.error("Starting 'get_host_reputation' operation with inputs: %s", params)
+        logger.debug("Starting 'get_host_reputation' operation with inputs: %s", params)
         microsoft_graph = SetupSession(config)
         graph_api_endpoint = '{0}/{1}'.format(microsoft_graph.ms.host, config.get('api_version'))
-        logger.error("API endpoint constructed: %s", graph_api_endpoint)
+        logger.debug("API endpoint constructed: %s", graph_api_endpoint)
 
         url = graph_api_endpoint + '/security/threatIntelligence/intelProfiles/{0}/indicators'.format(params.get('intelligenceProfileId'))
-        logger.error("Constructed URL for host reputation request: %s", url)
+        logger.debug("Constructed URL for host reputation request: %s", url)
 
         microsoft_graph.session.headers.pop('Prefer', '')
         response = microsoft_graph.session.get(url=url)
         microsoft_graph.session.close()
 
         if response.ok:
-            logger.error("Received successful response with response: %s", response.json())
+            logger.debug("Received successful response with response: %s", response.json())
             return response.json()
         else:
             logger.error("Failed request: %s, Response: %s, Reason: %s", url, response.content, response.reason)
