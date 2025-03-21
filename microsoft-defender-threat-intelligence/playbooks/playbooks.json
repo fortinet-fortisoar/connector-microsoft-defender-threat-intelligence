@@ -259,7 +259,7 @@
           "collection": "/api/3/workflow_collections/8620c5a4-4602-4b8d-b3d2-1d6935f43a95",
           "triggerLimit": null,
           "description": "Retrieves an inventory of software components, services, and applications detected on the specified host system.",
-          "name": "List Components",
+          "name": "Get Components List",
           "tag": "#Microsoft Defender Threat Intelligence",
           "recordTags": [
             "Microsoft",
@@ -280,7 +280,7 @@
               "status": null,
               "arguments": {
                 "route": "fa5a0992-950a-4eb4-af71-5f15e62ea60d",
-                "title": "Microsoft Defender Threat Intelligence: List Components",
+                "title": "Microsoft Defender Threat Intelligence: Get Components List",
                 "resources": [
                   "alerts"
                 ],
@@ -301,7 +301,7 @@
             {
               "uuid": "06b34093-cdd8-48f4-b6ee-aec4e0a8f38f",
               "@type": "WorkflowStep",
-              "name": "List Components",
+              "name": "Get Components List",
               "description": null,
               "status": null,
               "arguments": {
@@ -311,7 +311,7 @@
                 "version": "1.0.0",
                 "connector": "microsoft-defender-threat-intelligence",
                 "operation": "list_components",
-                "operationTitle": "List Components",
+                "operationTitle": "Get Components List",
                 "step_variables": {
                   "output_data": "{{vars.result}}"
                 }
@@ -327,7 +327,7 @@
               "uuid": "3057dda4-8b68-4463-bca7-73997fc6540e",
               "label": null,
               "isExecuted": false,
-              "name": "Start-> List Components",
+              "name": "Start-> Get Components List",
               "sourceStep": "/api/3/workflow_steps/969780e8-55a1-4837-9bf5-fcf83d292b72",
               "targetStep": "/api/3/workflow_steps/06b34093-cdd8-48f4-b6ee-aec4e0a8f38f"
             }
@@ -339,7 +339,7 @@
           "collection": "/api/3/workflow_collections/8620c5a4-4602-4b8d-b3d2-1d6935f43a95",
           "triggerLimit": null,
           "description": "Retrieves historical DNS resolution records showing how domain names have mapped to IP addresses over time.",
-          "name": "List Passive DNS",
+          "name": "Get Passive DNS List",
           "tag": "#Microsoft Defender Threat Intelligence",
           "recordTags": [
             "Microsoft",
@@ -360,7 +360,7 @@
               "status": null,
               "arguments": {
                 "route": "471eb879-6a61-4526-b37b-bbe7263f6ea0",
-                "title": "Microsoft Defender Threat Intelligence: List Passive DNS",
+                "title": "Microsoft Defender Threat Intelligence: Get Passive DNS List",
                 "resources": [
                   "alerts"
                 ],
@@ -381,7 +381,7 @@
             {
               "uuid": "149be818-eb6c-4cc3-9f46-eb178db09bb9",
               "@type": "WorkflowStep",
-              "name": "List Passive DNS",
+              "name": "Get Passive DNS List",
               "description": null,
               "status": null,
               "arguments": {
@@ -391,7 +391,7 @@
                 "version": "1.0.0",
                 "connector": "microsoft-defender-threat-intelligence",
                 "operation": "list_passiveDns",
-                "operationTitle": "List Passive DNS",
+                "operationTitle": "Get Passive DNS List",
                 "step_variables": {
                   "output_data": "{{vars.result}}"
                 }
@@ -407,7 +407,7 @@
               "uuid": "fc1cd850-b3e6-4cc0-9f5b-88a444b4c97d",
               "label": null,
               "isExecuted": false,
-              "name": "Start-> List Passive DNS",
+              "name": "Start-> Get Passive DNS List",
               "sourceStep": "/api/3/workflow_steps/cfb5820b-db68-42d5-ae18-1c951a98d43f",
               "targetStep": "/api/3/workflow_steps/149be818-eb6c-4cc3-9f46-eb178db09bb9"
             }
@@ -419,7 +419,7 @@
           "collection": "/api/3/workflow_collections/8620c5a4-4602-4b8d-b3d2-1d6935f43a95",
           "triggerLimit": null,
           "description": "Retrieves historical reverse DNS records showing how IP addresses have mapped to domain names over time.",
-          "name": "List Passive DNS Reverse",
+          "name": "Get Passive DNS Reverse List",
           "tag": "#Microsoft Defender Threat Intelligence",
           "recordTags": [
             "Microsoft",
@@ -440,7 +440,7 @@
               "status": null,
               "arguments": {
                 "route": "f79f9105-9eb4-4ac0-87ce-9a665c98c7dd",
-                "title": "Microsoft Defender Threat Intelligence: List Passive DNS Reverse",
+                "title": "Microsoft Defender Threat Intelligence: Get Passive DNS Reverse List",
                 "resources": [
                   "alerts"
                 ],
@@ -461,7 +461,7 @@
             {
               "uuid": "980146f4-732b-461c-9451-014fe145bbea",
               "@type": "WorkflowStep",
-              "name": "List Passive DNS Reverse",
+              "name": "Get Passive DNS Reverse List",
               "description": null,
               "status": null,
               "arguments": {
@@ -471,7 +471,7 @@
                 "version": "1.0.0",
                 "connector": "microsoft-defender-threat-intelligence",
                 "operation": "list_passiveDns_reverse",
-                "operationTitle": "List Passive DNS Reverse",
+                "operationTitle": "Get Passive DNS Reverse List",
                 "step_variables": {
                   "output_data": "{{vars.result}}"
                 }
@@ -487,7 +487,7 @@
               "uuid": "64161ba1-1fb5-4399-849a-ff6a5a6010f6",
               "label": null,
               "isExecuted": false,
-              "name": "Start-> List Passive DNS Reverse",
+              "name": "Start-> Get Passive DNS Reverse List",
               "sourceStep": "/api/3/workflow_steps/c23a8285-7d79-4c1c-b897-88d91a0f3cba",
               "targetStep": "/api/3/workflow_steps/980146f4-732b-461c-9451-014fe145bbea"
             }
@@ -499,7 +499,7 @@
           "collection": "/api/3/workflow_collections/8620c5a4-4602-4b8d-b3d2-1d6935f43a95",
           "triggerLimit": null,
           "description": "Retrieves a comprehensive list of open ports, associated services, and network protocols active on the specified host.",
-          "name": "List Host Ports",
+          "name": "Get Host Ports List",
           "tag": "#Microsoft Defender Threat Intelligence",
           "recordTags": [
             "Microsoft",
@@ -520,7 +520,7 @@
               "status": null,
               "arguments": {
                 "route": "fa9363c0-c726-4d59-b476-f64ca6af0f88",
-                "title": "Microsoft Defender Threat Intelligence: List Host Ports",
+                "title": "Microsoft Defender Threat Intelligence: Get Host Ports List",
                 "resources": [
                   "alerts"
                 ],
@@ -541,7 +541,7 @@
             {
               "uuid": "f731acb7-a285-4850-9d42-cbf043f01f96",
               "@type": "WorkflowStep",
-              "name": "List Host Ports",
+              "name": "Get Host Ports List",
               "description": null,
               "status": null,
               "arguments": {
@@ -551,7 +551,7 @@
                 "version": "1.0.0",
                 "connector": "microsoft-defender-threat-intelligence",
                 "operation": "list_hostPorts",
-                "operationTitle": "List Host Ports",
+                "operationTitle": "Get Host Ports List",
                 "step_variables": {
                   "output_data": "{{vars.result}}"
                 }
@@ -567,7 +567,7 @@
               "uuid": "2c73d0dd-b126-4ddb-b388-b2a95af4b16e",
               "label": null,
               "isExecuted": false,
-              "name": "Start-> List Host Ports",
+              "name": "Start-> Get Host Ports List",
               "sourceStep": "/api/3/workflow_steps/bcbce36a-bc9b-4499-b35a-3b5cf22fa89a",
               "targetStep": "/api/3/workflow_steps/f731acb7-a285-4850-9d42-cbf043f01f96"
             }
@@ -579,7 +579,7 @@
           "collection": "/api/3/workflow_collections/8620c5a4-4602-4b8d-b3d2-1d6935f43a95",
           "triggerLimit": null,
           "description": "Retrieves all SSL/TLS certificates associated with the host, including validity dates, issuers, and certificate details.",
-          "name": "List Host SSL Certificates",
+          "name": "Get Host SSL Certificates List",
           "tag": "#Microsoft Defender Threat Intelligence",
           "recordTags": [
             "Microsoft",
@@ -600,7 +600,7 @@
               "status": null,
               "arguments": {
                 "route": "9580ce66-e257-4fd2-b8eb-1d0abc6c170f",
-                "title": "Microsoft Defender Threat Intelligence: List Host SSL Certificates",
+                "title": "Microsoft Defender Threat Intelligence: Get Host SSL Certificates List",
                 "resources": [
                   "alerts"
                 ],
@@ -621,7 +621,7 @@
             {
               "uuid": "ae1a6088-6b45-4a09-a021-d9bf6c6d95f6",
               "@type": "WorkflowStep",
-              "name": "List Host SSL Certificates",
+              "name": "Get Host SSL Certificates List",
               "description": null,
               "status": null,
               "arguments": {
@@ -631,7 +631,7 @@
                 "version": "1.0.0",
                 "connector": "microsoft-defender-threat-intelligence",
                 "operation": "list_host_ssl_certificates",
-                "operationTitle": "List Host SSL Certificates",
+                "operationTitle": "Get Host SSL Certificates List",
                 "step_variables": {
                   "output_data": "{{vars.result}}"
                 }
@@ -647,7 +647,7 @@
               "uuid": "bcabbd6f-0313-4766-80f1-4dbea9457834",
               "label": null,
               "isExecuted": false,
-              "name": "Start-> List Host SSL Certificates",
+              "name": "Start-> Get Host SSL Certificates List",
               "sourceStep": "/api/3/workflow_steps/f16b224f-dec7-48da-a529-7ba64d12493d",
               "targetStep": "/api/3/workflow_steps/ae1a6088-6b45-4a09-a021-d9bf6c6d95f6"
             }
@@ -819,7 +819,7 @@
           "collection": "/api/3/workflow_collections/8620c5a4-4602-4b8d-b3d2-1d6935f43a95",
           "triggerLimit": null,
           "description": "Retrieves a comprehensive list of threat indicators, including IOCs, behavioral patterns, and security alerts from the specified intelligence profile.",
-          "name": "List Indicators",
+          "name": "Get Indicators List",
           "tag": "#Microsoft Defender Threat Intelligence",
           "recordTags": [
             "Microsoft",
@@ -840,7 +840,7 @@
               "status": null,
               "arguments": {
                 "route": "a8ce8e7d-4181-4f0c-8a5d-57b8aa4dc88b",
-                "title": "Microsoft Defender Threat Intelligence: List Indicators",
+                "title": "Microsoft Defender Threat Intelligence: Get Indicators List",
                 "resources": [
                   "alerts"
                 ],
@@ -861,7 +861,7 @@
             {
               "uuid": "d4e19ca2-df73-4b7d-aed3-eb840fe902d6",
               "@type": "WorkflowStep",
-              "name": "List Indicators",
+              "name": "Get Indicators List",
               "description": null,
               "status": null,
               "arguments": {
@@ -871,7 +871,7 @@
                 "version": "1.0.0",
                 "connector": "microsoft-defender-threat-intelligence",
                 "operation": "list_indicators",
-                "operationTitle": "List Indicators",
+                "operationTitle": "Get Indicators List",
                 "step_variables": {
                   "output_data": "{{vars.result}}"
                 }
@@ -887,7 +887,7 @@
               "uuid": "62138d6a-f72c-4e53-894f-a0bf062fc4db",
               "label": null,
               "isExecuted": false,
-              "name": "Start-> List Indicators",
+              "name": "Start-> Get Indicators List",
               "sourceStep": "/api/3/workflow_steps/c9c313d4-401e-44e4-844a-91633e623d5a",
               "targetStep": "/api/3/workflow_steps/d4e19ca2-df73-4b7d-aed3-eb840fe902d6"
             }
