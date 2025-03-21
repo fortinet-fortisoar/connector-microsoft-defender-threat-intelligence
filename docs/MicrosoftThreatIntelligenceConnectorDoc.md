@@ -34,14 +34,14 @@ The following automated operations can be included in playbooks and you can also
 <table border=1><thead><tr><th>Function<br></th><th>Description<br></th><th>Annotation and Category<br></th></tr></thead><tbody><tr><td>Get Host Reputation<br></td><td>Retrieves security reputation and threat intelligence data for a specified host to assess its risk level and potential malicious activity.<br></td><td>get_host_reputation <br/>Containment<br></td></tr>
 <tr><td>Get Host Details<br></td><td>Retrieves security reputation and threat intelligence details for a specified host using its IP address or Fully Qualified Domain Name (FQDN).<br></td><td>get_host_details <br/>Containment<br></td></tr>
 <tr><td>Get Whois Record<br></td><td>Retrieves domain registration and ownership information through Whois lookup, either by host identifier or specific Whois record ID.<br></td><td>get_whoisrecord <br/>Containment<br></td></tr>
-<tr><td>List Components<br></td><td>Retrieves an inventory of software components, services, and applications detected on the specified host system.<br></td><td>list_components <br/>Containment<br></td></tr>
-<tr><td>List Passive DNS<br></td><td>Retrieves historical DNS resolution records showing how domain names have mapped to IP addresses over time.<br></td><td>list_passiveDns <br/>Containment<br></td></tr>
-<tr><td>List Passive DNS Reverse<br></td><td>Retrieves historical reverse DNS records showing how IP addresses have mapped to domain names over time.<br></td><td>list_passiveDns_reverse <br/>Containment<br></td></tr>
-<tr><td>List Host Ports<br></td><td>Retrieves a comprehensive list of open ports, associated services, and network protocols active on the specified host.<br></td><td>list_hostPorts <br/>Containment<br></td></tr>
-<tr><td>List Host SSL Certificates<br></td><td>Retrieves all SSL/TLS certificates associated with the host, including validity dates, issuers, and certificate details.<br></td><td>list_host_ssl_certificates <br/>Containment<br></td></tr>
+<tr><td>Get Components List<br></td><td>Retrieves an inventory of software components, services, and applications detected on the specified host system.<br></td><td>list_components <br/>Containment<br></td></tr>
+<tr><td>Get Passive DNS List<br></td><td>Retrieves historical DNS resolution records showing how domain names have mapped to IP addresses over time.<br></td><td>list_passiveDns <br/>Containment<br></td></tr>
+<tr><td>Get Passive DNS Reverse List<br></td><td>Retrieves historical reverse DNS records showing how IP addresses have mapped to domain names over time.<br></td><td>list_passiveDns_reverse <br/>Containment<br></td></tr>
+<tr><td>Get Host Ports List<br></td><td>Retrieves a comprehensive list of open ports, associated services, and network protocols active on the specified host.<br></td><td>list_hostPorts <br/>Containment<br></td></tr>
+<tr><td>Get Host SSL Certificates List<br></td><td>Retrieves all SSL/TLS certificates associated with the host, including validity dates, issuers, and certificate details.<br></td><td>list_host_ssl_certificates <br/>Containment<br></td></tr>
 <tr><td>Get Host SSL Certificate<br></td><td>Retrieves detailed information about a specific SSL/TLS certificate, including chain of trust, cryptographic details, and validation status.<br></td><td>get_host_ssl_certificate <br/>Containment<br></td></tr>
 <tr><td>Get Host Component<br></td><td>Retrieves detailed information about a specific software component, including version, configuration, and security status.<br></td><td>get_host_component <br/>Containment<br></td></tr>
-<tr><td>List Indicators<br></td><td>Retrieves a comprehensive list of threat indicators, including IOCs, behavioral patterns, and security alerts from the specified intelligence profile.<br></td><td>list_indicators <br/>Containment<br></td></tr>
+<tr><td>Get Indicators List<br></td><td>Retrieves a comprehensive list of threat indicators, including IOCs, behavioral patterns, and security alerts from the specified intelligence profile.<br></td><td>list_indicators <br/>Containment<br></td></tr>
 </tbody></table>
 
 ### operation: Get Host Reputation
@@ -91,7 +91,7 @@ The output contains the following populated JSON schema:
 
  No output schema is available at this time.
 
-### operation: List Components
+### operation: Get Components List
 #### Input parameters
 <table border=1><thead><tr><th>Parameter<br></th><th>Description<br></th></tr></thead><tbody><tr><td>Host ID<br></td><td>Enter an IP or FQDN to list detected software components and services.<br>
 </td></tr></tbody></table>
@@ -115,7 +115,7 @@ The output contains the following populated JSON schema:
 </code><code><br>&nbsp;&nbsp;&nbsp;&nbsp;    ]
 </code><code><br>}</code>
 
-### operation: List Passive DNS
+### operation: Get Passive DNS List
 #### Input parameters
 <table border=1><thead><tr><th>Parameter<br></th><th>Description<br></th></tr></thead><tbody><tr><td>Host ID<br></td><td>Enter an IP or FQDN to retrieve historical DNS resolution records.<br>
 </td></tr></tbody></table>
@@ -142,7 +142,7 @@ The output contains the following populated JSON schema:
 </code><code><br>&nbsp;&nbsp;&nbsp;&nbsp;    ]
 </code><code><br>}</code>
 
-### operation: List Passive DNS Reverse
+### operation: Get Passive DNS Reverse List
 #### Input parameters
 <table border=1><thead><tr><th>Parameter<br></th><th>Description<br></th></tr></thead><tbody><tr><td>Host ID<br></td><td>Enter an IP or FQDN to retrieve reverse DNS resolution records.<br>
 </td></tr></tbody></table>
@@ -169,7 +169,7 @@ The output contains the following populated JSON schema:
 </code><code><br>&nbsp;&nbsp;&nbsp;&nbsp;    ]
 </code><code><br>}</code>
 
-### operation: List Host Ports
+### operation: Get Host Ports List
 #### Input parameters
 <table border=1><thead><tr><th>Parameter<br></th><th>Description<br></th></tr></thead><tbody><tr><td>Host ID<br></td><td>Enter an IP or FQDN to list open ports and services running on the host.<br>
 </td></tr></tbody></table>
@@ -219,7 +219,7 @@ The output contains the following populated JSON schema:
 </code><code><br>&nbsp;&nbsp;&nbsp;&nbsp;    ]
 </code><code><br>}</code>
 
-### operation: List Host SSL Certificates
+### operation: Get Host SSL Certificates List
 #### Input parameters
 <table border=1><thead><tr><th>Parameter<br></th><th>Description<br></th></tr></thead><tbody><tr><td>Host ID<br></td><td>Enter an IP or FQDN to retrieve SSL/TLS certificates associated with the host.<br>
 </td></tr></tbody></table>
@@ -390,7 +390,7 @@ The output contains the following populated JSON schema:
 </code><code><br>&nbsp;&nbsp;&nbsp;&nbsp;    "host_id": ""
 </code><code><br>}</code>
 
-### operation: List Indicators
+### operation: Get Indicators List
 #### Input parameters
 <table border=1><thead><tr><th>Parameter<br></th><th>Description<br></th></tr></thead><tbody><tr><td>Intelligence Profile ID<br></td><td>Enter the intelligence profile identifier to retrieve associated threat indicators.<br>
 </td></tr></tbody></table>
@@ -412,11 +412,11 @@ The `Sample - microsoft-defender-threat-intelligence - 1.0.0` playbook collectio
 - Get Host Reputation
 - Get Host SSL Certificate
 - Get Whois Record
-- List Components
-- List Host Ports
-- List Host SSL Certificates
-- List Indicators
-- List Passive DNS
-- List Passive DNS Reverse
+- Get Components List
+- Get Host Ports List
+- Get Host SSL Certificates List
+- Get Indicators List
+- Get Passive DNS List
+- Get Passive DNS Reverse List
 
 **Note**: If you are planning to use any of the sample playbooks in your environment, ensure that you clone those playbooks and move them to a different collection, since the sample playbook collection gets deleted during connector upgrade and delete.
