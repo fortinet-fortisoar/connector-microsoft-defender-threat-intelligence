@@ -4,7 +4,7 @@ MIT License
 Copyright (c) 2025 Fortinet Inc
 Copyright end
 """
-import msal, base64
+import base64
 from urllib.parse import urljoin
 from requests import request
 from time import time, ctime
@@ -89,22 +89,6 @@ class MicrosoftAuth:
             logger.info("Token is valid till {0}".format(expires))
             return "Bearer {0}".format(connector_config.get('accessToken'))
 
-    def generate_token_using_certificate(self):
-        try:
-            app = msal.ConfidentialClientApplication(self.client_id, authority=self.authority,
-                                                     client_credential={"thumbprint": self.thumbprint,
-                                                                        "private_key": self.private_key})
-
-            token_resp = app.acquire_token_for_client(scopes=[SCOPE])
-            error_code = token_resp.get('error')
-            if error_code:
-                error_description = token_resp.get('error_description')
-                raise ConnectorError(error_description)
-            return token_resp
-
-        except Exception as err:
-            logger.exception("{0}".format(err))
-            raise ConnectorError("{0}".format(err))
 
     def acquire_token_with_client_credentials(self):
         try:
